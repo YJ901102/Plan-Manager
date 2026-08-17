@@ -1,0 +1,15 @@
+# Dependencies & build output
+node_modules/
+mac-app/node_modules/
+mac-app/dist/
+
+# Assembled app bundles and the Electron binary zip
+*.app/
+electron-v*-darwin-*.zip
+
+# macOS noise
+.DS_Store
+
+# Local scratch
+screenshots/
+uploads/

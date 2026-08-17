@@ -1,0 +1,37 @@
+{
+  "name": "plan-manager",
+  "productName": "Plan Manager",
+  "version": "1.0.0",
+  "description": "Local Plan Manager with live macOS & Google Calendar sync",
+  "author": "Plan Manager",
+  "license": "MIT",
+  "main": "main.js",
+  "repository": { "type": "git", "url": "https://github.com/YJ901102/Plan-Manager.git" },
+  "scripts": {
+    "copy-web": "node copy-web.js",
+    "start": "electron .",
+    "dist": "npm run copy-web && electron-builder",
+    "pack": "npm run copy-web && electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^30.0.9",
+    "electron-builder": "^24.13.3"
+  },
+  "build": {
+    "appId": "com.planmanager.app",
+    "productName": "Plan Manager",
+    "directories": { "output": "dist", "buildResources": "build" },
+    "files": ["main.js", "preload.js", "updater.js", "calendar/**/*", "web/**/*", "node_modules/**/*"],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": ["dmg", "zip"],
+      "hardenedRuntime": true,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "NSCalendarsUsageDescription": "Plan Manager reads your Calendar so you can import events as tasks.",
+        "NSCalendarsFullAccessUsageDescription": "Plan Manager reads your Calendar so you can import events as tasks."
+      }
+    }
+  }
+}
